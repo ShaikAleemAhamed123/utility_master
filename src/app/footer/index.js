@@ -1,5 +1,7 @@
 import './index.css'
 import * as fa from '@fortawesome/fontawesome-svg-core'
+import './index.css'
+
 function Footer() {
     return <>
         <footer className="bg-dark text-center text-white">
