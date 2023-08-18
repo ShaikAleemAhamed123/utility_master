@@ -183,6 +183,7 @@ ul {
   padding-left: 2rem;
   /* transition: background 1s cubic-bezier(0.57, 0.21, 0.69, 1.25); */
   transition: none;
+  margin: 0 1rem;
 }
 
 .my-form input[type="checkbox"] + label::before,
@@ -253,4 +254,19 @@ ul {
   .my-form input[type="checkbox"]:checked + label::after {
     top: 3px;
   }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input.invalid {
+  border-color: red;
 }
