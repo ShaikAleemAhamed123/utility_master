@@ -1,6 +1,4 @@
-import './index.css'
-import * as fa from '@fortawesome/fontawesome-svg-core'
-import './index.css'
+import "../styles/footer-styles.css"
 
 function Footer() {
     return <>

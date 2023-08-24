@@ -215,9 +215,12 @@ ul {
 }
 
 .my-form{
-  margin: 2rem 0;
+  margin: auto 0;
 }
 
+button{
+  border: 1px solid grey !important;
+}
  
 /* MQ
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

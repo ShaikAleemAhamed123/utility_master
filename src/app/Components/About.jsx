@@ -1,5 +1,5 @@
 
-import './index.css'
+import "../styles/about-styles.css"
 function About() {
     return <>
         <div>
