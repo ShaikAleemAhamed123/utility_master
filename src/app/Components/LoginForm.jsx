@@ -22,7 +22,7 @@ function LoginForm() {
             <div className="container">
                 <h1>Log In</h1>
                 <ul>
-                    <li className='credentials'>
+                    <li className='credentials'> 
                         <label htmlFor="userHandle">User Handle</label>
                         <input type="text" id="user-handle" required/>
                     </li>
