@@ -14,7 +14,7 @@ import {
 
 function App() {
     return <>
-        <Router>
+        <Router> 
             <div className="app-wrapper">
                 <div className="main-content">
 
