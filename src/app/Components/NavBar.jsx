@@ -51,16 +51,16 @@ function NavBar() {
             <div className="collapse navbar-collapse  " id="navbarSupportedContent">
                 <ul className="navbar-nav ms-auto">
                     <li className="nav-item me-4">
-                        <a className="nav-link" href="#">Home</a>
+                        <a className="nav-link" href="/home">Home</a>
                     </li>
                     <li className="nav-item me-4">
-                        <a className="nav-link"  onClick={handleCredits}>Credits</a>
+                        <a className="nav-link" href="/credits" onClick={handleCredits}>Credits</a>
                     </li>
                     <li className="nav-item me-4">
-                        <a className="nav-link" onClick={handleDebts}>Debts</a>
+                        <a className="nav-link"  href="/debts" onClick={handleDebts}>Debts</a>
                     </li>
                     <li className="nav-item me-4">
-                        <a className="nav-link" href="#">About</a>
+                        <a className="nav-link" href="/about">About</a>
                     </li>
                     <button type='button' className="nav-item btn btn-secondary rounded btn-sm" onClick={logOut}>
                         Log Out
