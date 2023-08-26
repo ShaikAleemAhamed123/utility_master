@@ -33,7 +33,12 @@ function App() {
                         } />
                         <Route exact path="/credits" element={
                             <ProtectedRoute>
-                                <Txnpage txnType={"credit"} userHandle={"vamshi"} />
+                                <Txnpage txnType={"Credits"} userHandle={"vamshi"} />
+                            </ProtectedRoute>
+                        } />
+                        <Route exact path="/debts" element={
+                            <ProtectedRoute>
+                                <Txnpage txnType={"Debits"} userHandle={"vamshi"} />
                             </ProtectedRoute>
                         } />
                         <Route exact path="/about" element={
