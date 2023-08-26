@@ -1,19 +1,26 @@
+import {useState} from 'react';
 import "../styles/loginForm-styles.css"
-
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom/dist';
 function LoginForm() {
+        const [userHandle,setUserHandle]=useState();
+        const [password,setPassword]=useState();
 
+const navigate=useNavigate();
 
-
-    function submitHandler(event) {
+    async function submitHandler(event) {
         event.preventDefault();
-        const amount = document.querySelector("#amount").value;
-        if (amount < 0) {
-            alert("Enter Positive Amount");
+        try{
+           const res=await axios.post("https://utility-api.onrender.com/auth/signIn",{userHandle:userHandle,password:password});
+          // console.log(res.data);
+           const token=res.data;
+           Cookies.set('user_token', token, { expires: 30 });
+           Cookies.set('username',userHandle,{expires:30});
+           navigate('/home');
         }
-        else {
-            // TODO Submit the Form to the server !
-            const form = event.target;
-            form.reset();
+        catch(err){
+            console.log("Error, here in the login form ", err);
         }
     }
 
@@ -24,11 +31,11 @@ function LoginForm() {
                 <ul>
                     <li className='credentials'> 
                         <label htmlFor="userHandle">User Handle</label>
-                        <input type="text" id="user-handle" required/>
+                        <input type="text" onChange={(e)=>setUserHandle(e.target.value)} id="user-handle" required/>
                     </li>
                     <li className='credentials'>
                         <label htmlFor="password">Password</label>
-                        <input type="text" id="password" required/>
+                        <input type="text" onChange={(e)=>setPassword(e.target.value)} id="password" required/>
                     </li>
                     <div className="grid grid-3">
                         <div className="required-msg">REQUIRED FIELDS</div>

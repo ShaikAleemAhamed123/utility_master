@@ -1,10 +1,17 @@
 import { useState } from 'react';
 import "../styles/inputForm-styles.css"
-
+import axios from 'axios';
+import Cookies from 'js-cookie';
 function InputForm() {
-
+    
     const [equalSplit, setEqualSplit] = useState(false);
-
+    const [tag, setTag] = useState();
+    const [amount, setAmount] = useState();
+    const [userHandle, setUserHandle] = useState();
+    const [splitAmount, setSplitAmount] = useState();
+    const [userHandles, setUserHandles] = useState([]);
+    const userName=Cookies.get('username');
+    const token=Cookies.get('user_token');
     const handleEqualSplitToggle = () => {
         if (!equalSplit) {
             setEqualSplit(true);
@@ -12,49 +19,87 @@ function InputForm() {
             setEqualSplit(false);
         }
     };
-
-    const [splitUsers, setSplitUsers] = useState("");
-
     const handleSplitUsersAddButton = (e) => {
         e.preventDefault();
-        const user = document.querySelector("#split-user").value;
-        let amount = -1;
-        if (equalSplit) {
-            amount = document.querySelector("#amount").value;
-        }
-        else {
-            amount = document.querySelector("#split-amount").value;
-        }
 
-        if (user === "") {
+        if (equalSplit) {
+           const n=userHandles.length+1;
+           if (userHandle === "") {
             alert("Enter valid user handle");
         }
         else {
-            console.log(user);
+            console.log(userHandle);
             if (amount < 0) {
                 alert("Enter valid amount");
             }
             else {
                 console.log(amount);
-                setSplitUsers(splitUsers + (splitUsers!=="" ? "; " : "") + user + " - " + amount);
-                document.querySelector("#split-users").innerHTML = splitUsers;
+                const am=parseFloat(amount)/n;
+                console.log(am);
+                
+                const alterUsers = userHandles.map((item) => ({
+                    ...item,
+                    amount: am
+                  }));
+                const newUserHandles=[...alterUsers,{payer:userHandle,amount:am}];
+                
+                setUserHandles(newUserHandles);
+               
+                setUserHandle('');
+                setSplitAmount('');
+            }
+        }
+        }
+        else {
+            if (userHandle === "") {
+                alert("Enter valid user handle");
+            }
+            else {
+                console.log(userHandle);
+                if (splitAmount < 0) {
+                    alert("Enter valid amount");
+                }
+                else {
+                    console.log(splitAmount);
+                    const newUserHandles = [...userHandles,{payer:userHandle,amount:splitAmount}];
+                   
+                    setUserHandles(newUserHandles);
+                   
+                    setUserHandle('');
+                    setSplitAmount('');
+                }
             }
         }
 
     }
 
-    function submitHandler(event) {
+    async function submitHandler(event) {
         event.preventDefault();
-        const amount = document.querySelector("#amount").value;
-        if (amount < 0) {
-            alert("Enter Positive Amount");
+        try{
+          const headers={
+            'Authorization': `Bearer ${token}`,
+            'userHandle':`${userName}`,
+          }
+          const newUserHandles=userHandles.map((item)=>({
+                ...item,
+                "payee":userName,
+                "tag":tag
+          }));
+        //  console.log(token);
+          for(var i=0;i<newUserHandles.length;i++){
+            console.log(newUserHandles[i]);
+            const res=await axios.post("https://utility-api.onrender.com/expense/addExpense",newUserHandles[i],{headers});
+            console.log(res);
+          }
+           
         }
-        else {
-            // TODO Submit the Form to the server !
-            const form = event.target;
-            form.reset();
+        catch(err){
+            console.log("Error, Here in the inputForm ",err);
         }
     }
+    const formattedData = userHandles.map((handle, index) => (
+        `${handle.payer} - ${handle.amount}`
+    )).join('\n');
 
     return <>
         <form className="my-form" onSubmit={submitHandler}>
@@ -62,10 +107,10 @@ function InputForm() {
                 <h1>Add Expense</h1>
                 <ul>
                     <li>
-                        <select>
-                            <option>Water Can</option>
-                            <option>Laundry</option>
-                            <option>Others</option>
+                        <select value={tag} onChange={(e) => setTag(e.target.value)}>
+                            <option value={"Water Can"}>Water Can</option>
+                            <option value={"Laundry"}>Laundry</option>
+                            <option value={"Others"}>Others</option>
                         </select>
                     </li>
                     <li className='splits'>
@@ -73,12 +118,12 @@ function InputForm() {
                         <label htmlFor="equal-split">Equal Split</label>
                     </li>
                     <li>
-                        <input style={{ display: equalSplit ? "block" : "None" }} type='number' id="amount" placeholder="Amount to be split" required />
+                      {equalSplit&&  (<input style={{ display:  "block" }} type='number' onChange={(e) => setAmount(e.target.value)} id="amount" placeholder="Amount to be split" required />)}
                     </li>
                     <li>
                         <div className={equalSplit ? "grid grid-2" : "grid grid-3"}>
-                            <input id="split-user" type="text" placeholder="Enter User Handle" />
-                            <input id="split-amount" style={{ display: equalSplit ? "none" : "block" }} type="number" placeholder="Split Amount" />
+                            <input id="split-user" onChange={(e) => setUserHandle(e.target.value)} type="text" placeholder="Enter User Handle" />
+                         { !equalSplit&&  (<input id="split-amount" onChange={(e) => setSplitAmount(e.target.value)} style={{ display:  "block" }} type="number" placeholder="Split Amount" />)}
                             <button className="btn-grid" onClick={handleSplitUsersAddButton}>
                                 <span>Add</span>
                             </button>
@@ -86,7 +131,7 @@ function InputForm() {
                     </li>
                     <li>
                         <div className="grid">
-                            <textarea id="split-users" value={splitUsers} type="text" placeholder="split participants user handles appear here." disabled />
+                            <textarea id="split-users" value={formattedData} type="text" placeholder="split participants user handles appear here." disabled />
                         </div>
                     </li>
                     <li>
