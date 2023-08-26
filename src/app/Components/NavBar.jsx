@@ -48,7 +48,7 @@ function NavBar() {
                 aria-label="Toggle navigation">
                 <div className="navbar-toggler-icon"></div>
             </button>
-            <div className="collapse navbar-collapse  " id="navbarSupportedContent"></div>
+            <div className="collapse navbar-collapse  " id="navbarSupportedContent">
                 <ul className="navbar-nav ms-auto">
                     <li className="nav-item me-4">
                         <a className="nav-link" href="/home">Home</a>
