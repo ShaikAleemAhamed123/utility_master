@@ -2,6 +2,7 @@ import {useState} from 'react';
 import "../styles/loginForm-styles.css"
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { redirect } from 'react-router-dom/dist';
 import { useNavigate } from 'react-router-dom/dist';
 function LoginForm() {
         const [userHandle,setUserHandle]=useState();
@@ -17,7 +18,7 @@ const navigate=useNavigate();
            const token=res.data;
            Cookies.set('user_token', token, { expires: 30 });
            Cookies.set('username',userHandle,{expires:30});
-           navigate('/home');
+           <redirect to="/home"/>
         }
         catch(err){
             console.log("Error, here in the login form ", err);
