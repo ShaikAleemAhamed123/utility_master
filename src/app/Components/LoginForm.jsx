@@ -17,7 +17,7 @@ const navigate=useNavigate();
            const token=res.data;
            Cookies.set('user_token', token, { expires: 30 });
            Cookies.set('username',userHandle,{expires:30});
-           navigate("/home");
+           navigate("/");
         }
         catch(err){
             console.log("Error, here in the login form ", err);
