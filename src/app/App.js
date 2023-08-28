@@ -2,7 +2,6 @@ import NavBar from './Components/NavBar'
 import Footer from './Components/Footer'
 import InputForm from './Components/InputForm'
 import About from './Components/About'
-import Landing from './Components/Landing'
 import './App.css'
 import LoginForm from './Components/LoginForm'
 import Txnpage from './Components/TxnPage'
@@ -11,20 +10,23 @@ import ProtectedRoute from './Components/ProtectedRoute'
 import {
     BrowserRouter as Router,
     Routes,
-    Route
+    Route,
 } from "react-router-dom";
 import Cookies from 'js-cookie'
 
 function App() {
-    const loggedInUser=Cookies.get('username');
+    const loggedInUser = Cookies.get('username');
     return <>
         <Router>
             <div className="app-wrapper">
                 <div className="main-content">
-
                     <Routes>
                         <Route exact path="/" element={
-                            <Landing />
+                            <ProtectedRoute>
+                                <NavBar />
+                                <InputForm />
+                                <Footer />
+                            </ProtectedRoute>
                         } />
                         <Route exact path="/signup" element={
                             <SignUp />
@@ -32,24 +34,17 @@ function App() {
                         <Route exact path="/login" element={
                             <LoginForm />
                         } />
-                        <Route exact path="/home" element={
-                            <ProtectedRoute>
-                                <NavBar />
-                                <InputForm />
-                                <Footer />
-                            </ProtectedRoute>
-                        } />
                         <Route exact path="/credits" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Credits"} userHandle={loggedInUser} type={"credits"} endPoint={"https://utility-api.onrender.com/user/credits"}/>
+                                <Txnpage txnType={"Credits"} userHandle={loggedInUser} type={"credits"} endPoint={"https://utility-api.onrender.com/user/credits"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
                         <Route exact path="/debts" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Debits"} userHandle={loggedInUser} type={"debits"} endPoint={"https://utility-api.onrender.com/user/debts"}/>
+                                <Txnpage txnType={"Debits"} userHandle={loggedInUser} type={"debits"} endPoint={"https://utility-api.onrender.com/user/debts"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
