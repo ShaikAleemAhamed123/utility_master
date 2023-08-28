@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import "../styles/txnPage-styles.css"
 import Cookies from "js-cookie";
 import axios from "axios";
@@ -10,10 +10,10 @@ function Tnxpage(props) {
 
 	const [txns, setTxns] = useState([]);
 
-	useEffect = () => {
+	useEffect( () => {
 		const url = props.endPoint;
 		fetchtxnData(url);
-	}
+	},[]);
 
 	async function fetchtxnData(url) {
 		const headers = {
@@ -29,22 +29,22 @@ function Tnxpage(props) {
 			params: params,
 			headers: headers
 		}).then((data) => {
-			console.log(data);
-			setTxns(data);
+			console.log(data.data);
+			setTxns(data.data);
 		});
 	}
 
-	const txnData=txns.map((txn) => {
+	const txnData = txns.map((txn) => (
 		<React.Fragment key={txn.id}>
-			<tr>
-				<td>{txn.id}</td>
-				<td>{txn.amount}</td>
-				<td>{props.type === "credits" ? txn.payer : txn.payee}</td>
-				<td>{txn.tag}</td>
-			</tr>
+		  <tr>
+			<td>{txn.id}</td>
+			<td>{txn.amount}</td>
+			<td>{props.type === "credits" ? txn.payer : txn.payee}</td>
+			<td>{txn.tag}</td>
+		  </tr>
 		</React.Fragment>
-
-	})
+	  ));
+	  
 	return <>
 		<div className="txn">
 			<h1><span className="blue">&lt;</span>Transactions<span className="blue">&gt;</span> <span className="yellow">{props.txnType}</span></h1>
