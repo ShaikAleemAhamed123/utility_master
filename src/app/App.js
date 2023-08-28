@@ -13,8 +13,10 @@ import {
     Routes,
     Route
 } from "react-router-dom";
+import Cookies from 'js-cookie'
 
 function App() {
+    const loggedInUser=Cookies.get('username');
     return <>
         <Router>
             <div className="app-wrapper">
@@ -40,14 +42,14 @@ function App() {
                         <Route exact path="/credits" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Credits"} userHandle={"vamshi"} />
+                                <Txnpage txnType={"Credits"} userHandle={loggedInUser} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
                         <Route exact path="/debts" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Debits"} userHandle={"vamshi"} />
+                                <Txnpage txnType={"Debits"} userHandle={loggedInUser} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
