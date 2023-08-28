@@ -39,8 +39,8 @@ function Tnxpage(props) {
 		  <tr>
 			<td>{txn.id}</td>
 			<td>{txn.amount}</td>
+			<td>{txn.tag==null ? "None" : txn.tag}</td>
 			<td>{props.type === "credits" ? txn.payer : txn.payee}</td>
-			<td>{txn.tag}</td>
 		  </tr>
 		</React.Fragment>
 	  ));
@@ -54,8 +54,9 @@ function Tnxpage(props) {
 					<tr>
 						<th><h1>Tnx Id</h1></th>
 						<th><h1>Amount</h1></th>
+						
 						<th><h1>Tag</h1></th>
-						<th><h1>{props.type == "debits" ? "Owes To" : "Lend To"}</h1></th>
+						<th><h1>{props.type == "debits" ? "Owe To" : "Lend To"}</h1></th>
 					</tr>
 				</thead>
 				<tbody>
