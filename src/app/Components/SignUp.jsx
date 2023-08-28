@@ -3,39 +3,47 @@ import "../styles/loginForm-styles.css"
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom/dist';
-function LoginForm() {
+function SignUp() {
+    const [userName,setUserName]=useState();
         const [userHandle,setUserHandle]=useState();
         const [password,setPassword]=useState();
+        const [roomNo,setRoomNo]=useState();
+         
 
 const navigate=useNavigate();
 
     async function submitHandler(event) {
         event.preventDefault();
         try{
-           const res=await axios.post("https://utility-api.onrender.com/auth/signIn",{userHandle:userHandle,password:password});
+           const res=await axios.post("https://utility-api.onrender.com/auth/signUp",{userName:userName, userHandle:userHandle,password:password, roomNo:roomNo});
           // console.log(res.data);
-           const token=res.data;
-           Cookies.set('user_token', token, { expires: 30 });
-           Cookies.set('username',userHandle,{expires:30});
-           navigate("/home");
+           navigate("/login");
         }
         catch(err){
-            console.log("Error, here in the login form ", err);
+            console.log("Error, here in the sign up form ", err);
         }
     }
 
     return <>
         <form className="my-form my-5" onSubmit={submitHandler}>
             <div className="container">
-                <h1>Log In</h1>
+                <h1>Sign Up</h1>
                 <ul>
                     <li className='credentials'> 
-                        <label htmlFor="userHandle">User Handle</label>
+                        <label htmlFor="userName">User Name</label>
+                        <input type="text" onChange={(e)=>setUserName(e.target.value)} id="user-handle" required/>
+                    </li>
+                    <li className='credentials'> 
+                        <label htmlFor="userHandle">User Handle  ( has to be unique )</label>
                         <input type="text" onChange={(e)=>setUserHandle(e.target.value)} id="user-handle" required/>
                     </li>
                     <li className='credentials'>
                         <label htmlFor="password">Password</label>
                         <input type="password" onChange={(e)=>setPassword(e.target.value)} id="password" required/>
+                    </li>
+                    <li className='credentials'>
+                        <label htmlFor="roomNo">Room Number</label>
+                        <input type="text" onChange={(e)=>setRoomNo(e.target.value)} id="roomNo" required/>
                     </li>
                     <div className="grid grid-3">
                         <div className="required-msg">REQUIRED FIELDS</div>
@@ -53,14 +61,12 @@ const navigate=useNavigate();
                         </button>
                     </div>
                     <li className="my-5">
-                        Do not have an account. <a href="/signup">Sign Up</a>
+                        Already have an account. <a href="/login">Log In</a>
                     </li>
                 </ul>
             </div>
-             
         </form>
-         
     </>
 }
 
-export default LoginForm;
+export default SignUp;

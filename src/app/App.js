@@ -6,6 +6,7 @@ import Landing from './Components/Landing'
 import './App.css'
 import LoginForm from './Components/LoginForm'
 import Txnpage from './Components/TxnPage'
+import SignUp from './Components/SignUp'
 import ProtectedRoute from './Components/ProtectedRoute'
 import {
     BrowserRouter as Router,
@@ -18,38 +19,48 @@ function App() {
         <Router>
             <div className="app-wrapper">
                 <div className="main-content">
-                    <NavBar />
+
                     <Routes>
                         <Route exact path="/" element={
                             <Landing />
+                        } />
+                        <Route exact path="/signup" element={
+                            <SignUp />
                         } />
                         <Route exact path="/login" element={
                             <LoginForm />
                         } />
                         <Route exact path="/home" element={
                             <ProtectedRoute>
+                                <NavBar />
                                 <InputForm />
+                                <Footer />
                             </ProtectedRoute>
                         } />
                         <Route exact path="/credits" element={
                             <ProtectedRoute>
+                                <NavBar />
                                 <Txnpage txnType={"Credits"} userHandle={"vamshi"} />
+                                <Footer />
                             </ProtectedRoute>
                         } />
                         <Route exact path="/debts" element={
                             <ProtectedRoute>
+                                <NavBar />
                                 <Txnpage txnType={"Debits"} userHandle={"vamshi"} />
+                                <Footer />
                             </ProtectedRoute>
                         } />
                         <Route exact path="/about" element={
-                            <ProtectedRoute component={
-                                <InputForm />
-                            } />
+                            <ProtectedRoute>
+                                <NavBar />
+                                <About />
+                                <Footer />
+                            </ProtectedRoute>
 
                         } />
 
                     </Routes>
-                    <Footer />
                 </div>
 
             </div>
