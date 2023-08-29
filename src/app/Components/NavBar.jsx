@@ -20,7 +20,7 @@ function NavBar() {
                 'Authorization': `Bearer ${token}`,
                 'userHandle':`${userName}`,
               }
-              const res=await axios.get("https://utility-api.onrender.com/user/credits",{headers});
+              const res=await axios.get("https://utility-server.azurewebsites.net/user/credits",{headers});
               console.log(res);
             }
            catch(err){
@@ -33,7 +33,7 @@ function NavBar() {
              'Authorization': `Bearer ${token}`,
              'userHandle':`${userName}`,
            }
-           const res=await axios.get("https://utility-api.onrender.com/user/debts",{headers});
+           const res=await axios.get("https://utility-server.azurewebsites.net/user/debts",{headers});
            console.log(res);
          }
         catch(err){

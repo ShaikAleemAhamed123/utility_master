@@ -15,7 +15,7 @@ const navigate=useNavigate();
     async function submitHandler(event) {
         event.preventDefault();
         try{
-           const res=await axios.post("https://utility-api.onrender.com/auth/signUp",{userName:userName, userHandle:userHandle,password:password, roomNo:roomNo});
+           const res=await axios.post("https://utility-server.azurewebsites.net/auth/signUp",{userName:userName, userHandle:userHandle,password:password, roomNo:roomNo});
           // console.log(res.data);
            navigate("/login");
         }

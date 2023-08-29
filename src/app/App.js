@@ -37,14 +37,14 @@ function App() {
                         <Route exact path="/credits" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Credits"} userHandle={loggedInUser} type={"credits"} endPoint={"https://utility-api.onrender.com/user/credits"} />
+                                <Txnpage txnType={"Credits"} userHandle={loggedInUser} type={"credits"} endPoint={"https://utility-server.azurewebsites.net/user/credits"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
                         <Route exact path="/debts" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Debits"} userHandle={loggedInUser} type={"debits"} endPoint={"https://utility-api.onrender.com/user/debts"} />
+                                <Txnpage txnType={"Debits"} userHandle={loggedInUser} type={"debits"} endPoint={"https://utility-server.azurewebsites.net/user/debts"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
