@@ -88,7 +88,7 @@ function InputForm() {
         //  console.log(token);
           for(var i=0;i<newUserHandles.length;i++){
             console.log(newUserHandles[i]);
-            const res=await axios.post("https://utility-api.onrender.com/expense/addExpense",newUserHandles[i],{headers});
+            const res=await axios.post("https://utility-server.azurewebsites.net/expense/addExpense",newUserHandles[i],{headers});
             console.log(res);
           }
            

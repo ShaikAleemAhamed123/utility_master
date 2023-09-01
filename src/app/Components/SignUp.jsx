@@ -15,7 +15,7 @@ const navigate=useNavigate();
     async function submitHandler(event) {
         event.preventDefault();
         try{
-           const res=await axios.post("https://utility-api.onrender.com/auth/signUp",{userName:userName, userHandle:userHandle,password:password, roomNo:roomNo});
+           const res=await axios.post("https://utility-server.azurewebsites.net/auth/signUp",{userName:userName, userHandle:userHandle,password:password, roomNo:roomNo});
           // console.log(res.data);
            navigate("/login");
         }
@@ -31,7 +31,7 @@ const navigate=useNavigate();
                 <ul>
                     <li className='credentials'> 
                         <label htmlFor="userName">User Name</label>
-                        <input type="text" onChange={(e)=>setUserName(e.target.value)} id="user-handle" required/>
+                        <input type="text" onChange={(e)=>setUserName(e.target.value)} id="user-name" required/>
                     </li>
                     <li className='credentials'> 
                         <label htmlFor="userHandle">User Handle  ( has to be unique )</label>

@@ -13,15 +13,15 @@ function LoginForm() {
 
     async function submitHandler(event) {
         event.preventDefault();
-        setIsLoading(true); // Set loading state to true
-
-        try {
-            const res = await axios.post("https://utility-api.onrender.com/auth/signIn", { userHandle: userHandle, password: password });
-            const token = res.data;
-            Cookies.set('user_token', token, { expires: 30 });
-            Cookies.set('username', userHandle, { expires: 30 });
-            navigate("/home");
-        } catch (err) {
+        try{
+           const res=await axios.post("https://utility-server.azurewebsites.net/auth/signIn",{userHandle:userHandle,password:password});
+          // console.log(res.data);
+           const token=res.data;
+           Cookies.set('user_token', token, { expires: 30 });
+           Cookies.set('username',userHandle,{expires:30});
+           navigate("/");
+        }
+        catch(err){
             console.log("Error, here in the login form ", err);
         } finally {
             setIsLoading(false); // Set loading state back to false after request is done
