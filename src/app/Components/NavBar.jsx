@@ -4,6 +4,7 @@ import "../styles/navBar-styles.css"
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 function NavBar() {
     const navigate = useNavigate();
     const logOut = () => {
@@ -53,7 +54,7 @@ function NavBar() {
         catch (err) {
             console.log("Error, here in the handling pending: ", err);
         }
-  }
+    }
     return <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div className="container-fluid">
             <a className="navbar-brand" href="/"><img src={app_logo} className=" me rounded-circle " alt="Aleem's" /></a>
@@ -76,9 +77,12 @@ function NavBar() {
                     <li className="nav-item me-4">
                         <a className="nav-link" href="/pending" onClick={handlePending}>Pending</a>
                     </li>
-                    <li className="nav-item me-4">
-                        <a className="nav-link"  href="/PTxns">Pending Transactions</a>
-                    </li>
+                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                        <NavDropdown.Item href="/received">Received Credits</NavDropdown.Item>
+                        <NavDropdown.Item href="/paid">
+                            Paid Debts
+                        </NavDropdown.Item>
+                    </NavDropdown>
                     <li className="nav-item me-4">
                         <a className="nav-link" href="/about">About</a>
                     </li>

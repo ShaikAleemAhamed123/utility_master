@@ -35,6 +35,20 @@ function App() {
                         <Route exact path="/login" element={
                             <LoginForm />
                         } />
+                        <Route exact path="/received" element={
+                            <ProtectedRoute>
+                                <NavBar />
+                                <Txnpage txnType={"Received_Credits"} userHandle={loggedInUser} type={"ReceivedCredits"} endPoint={"https://utility-server.azurewebsites.net/user/received"} />
+                                <Footer />
+                            </ProtectedRoute>
+                        } />
+                        <Route exact path="/paid" element={
+                            <ProtectedRoute>
+                                <NavBar />
+                                <Txnpage txnType={"Paid_Debits"} userHandle={loggedInUser} type={"PaidDebits"} endPoint={"https://utility-server.azurewebsites.net/user/paid"} />
+                                <Footer />
+                            </ProtectedRoute>
+                        } />
                         <Route exact path="/credits" element={
                             <ProtectedRoute>
                                 <NavBar />
@@ -56,6 +70,7 @@ function App() {
                                 <Footer />
                             </ProtectedRoute>
                         } />
+                         
                         <Route exact path="/about" element={
                             <ProtectedRoute>
                                 <NavBar />

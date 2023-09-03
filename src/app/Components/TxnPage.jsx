@@ -28,7 +28,7 @@ function Tnxpage(props) {
             params: params,
             headers: headers
         }).then((data) => {
-            console.log(data.data);
+            //console.log(data.data);
             setTxns(data.data);
         });
     }
