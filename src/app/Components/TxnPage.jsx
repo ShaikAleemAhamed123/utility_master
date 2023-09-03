@@ -32,14 +32,14 @@ function Tnxpage(props) {
             setTxns(data.data);
         });
     }
-  const handleTxn=async()=>{
-	try{
+    const handleTxn = async () => {
+        try {
 
-	}
-	catch(err){
-		console.log("Error: ", err);
-	}
-  }
+        }
+        catch (err) {
+            console.log("Error: ", err);
+        }
+    }
     const txnData = txns.map((txn) => (
         <React.Fragment key={txn.id}>
             <tr>
@@ -49,7 +49,7 @@ function Tnxpage(props) {
                 <td>{props.type === "credits" ? txn.payer : txn.payee}</td>
                 {props.type === "debits" && (
                     <td>
-                        <input type="checkbox" onClick={handleTxn}/>
+                        <input type="checkbox" onClick={handleTxn} />
                     </td>
                 )}
             </tr>
@@ -66,7 +66,7 @@ function Tnxpage(props) {
                         <th><h1>Tnx Id</h1></th>
                         <th><h1>Amount</h1></th>
                         <th><h1>Tag</h1></th>
-                        <th><h1>{props.type === "debits" ? "Owe To" : "Lend To"}</h1></th>
+                        <th><h1>{(props.type === "debits" || props.type === "PaidDebits") ? "Owe To" : "Lend To"}</h1></th>
                         {props.type === "debits" && <th>Checkbox</th>}
                     </tr>
                 </thead>
