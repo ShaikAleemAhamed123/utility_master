@@ -77,7 +77,7 @@ function NavBar() {
                     <li className="nav-item me-4">
                         <a className="nav-link" href="/pending" onClick={handlePending}>Pending</a>
                     </li>
-                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                    <NavDropdown title="History" id="basic-nav-dropdown">
                         <NavDropdown.Item href="/received">Received Credits</NavDropdown.Item>
                         <NavDropdown.Item href="/paid">
                             Paid Debts
