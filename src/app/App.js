@@ -48,6 +48,13 @@ function App() {
                                 <Footer />
                             </ProtectedRoute>
                         } />
+                        <Route exact path="/pending" element={
+                            <ProtectedRoute>
+                                <NavBar />
+                                <Txnpage txnType={"Pending"} userHandle={loggedInUser} type={"pending"} endPoint={"https://utility-server.azurewebsites.net/user/pending"} />
+                                <Footer />
+                            </ProtectedRoute>
+                        } />
                         <Route exact path="/about" element={
                             <ProtectedRoute>
                                 <NavBar />
