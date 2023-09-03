@@ -49,10 +49,10 @@ function App() {
                                 <Footer />
                             </ProtectedRoute>
                         } />
-                        <Route exact path="/PTxns" element={
+                        <Route exact path="/pending" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <PTxns txnType={"Pending"} userHandle={loggedInUser} type={"PTxns"} endPoint={"https://utility-server.azurewebsites.net/user/debts"} />
+                                <Txnpage txnType={"Pending"} userHandle={loggedInUser} type={"pending"} endPoint={"https://utility-server.azurewebsites.net/user/pending"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
