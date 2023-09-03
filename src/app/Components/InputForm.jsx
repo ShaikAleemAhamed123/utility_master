@@ -83,7 +83,8 @@ function InputForm() {
           const newUserHandles=userHandles.map((item)=>({
                 ...item,
                 "payee":userName,
-                "tag":tag
+                "tag":tag,
+                "status":"0"
           }));
         //  console.log(token);
           for(var i=0;i<newUserHandles.length;i++){

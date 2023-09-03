@@ -5,6 +5,7 @@ import About from './Components/About'
 import './App.css'
 import LoginForm from './Components/LoginForm'
 import Txnpage from './Components/TxnPage'
+import PTxns from './Components/PTxns'
 import SignUp from './Components/SignUp'
 import ProtectedRoute from './Components/ProtectedRoute'
 import {
@@ -45,6 +46,13 @@ function App() {
                             <ProtectedRoute>
                                 <NavBar />
                                 <Txnpage txnType={"Debits"} userHandle={loggedInUser} type={"debits"} endPoint={"https://utility-server.azurewebsites.net/user/debts"} />
+                                <Footer />
+                            </ProtectedRoute>
+                        } />
+                        <Route exact path="/PTxns" element={
+                            <ProtectedRoute>
+                                <NavBar />
+                                <PTxns txnType={"Pending"} userHandle={loggedInUser} type={"PTxns"} endPoint={"https://utility-server.azurewebsites.net/user/debts"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />

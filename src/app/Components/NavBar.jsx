@@ -40,6 +40,7 @@ function NavBar() {
          console.log("Error, here in the handling debts: ",err);
         }
  }
+ 
     return <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div className="container-fluid">
             <a className="navbar-brand" href="/"><img src={app_logo} className=" me rounded-circle " alt="Aleem's" /></a>
@@ -58,6 +59,9 @@ function NavBar() {
                     </li>
                     <li className="nav-item me-4">
                         <a className="nav-link"  href="/debts" onClick={handleDebts}>Debts</a>
+                    </li>
+                    <li className="nav-item me-4">
+                        <a className="nav-link"  href="/PTxns">Pending Transactions</a>
                     </li>
                     <li className="nav-item me-4">
                         <a className="nav-link" href="/about">About</a>
