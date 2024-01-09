@@ -38,35 +38,35 @@ function App() {
                         <Route exact path="/received" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Received_Credits"} userHandle={loggedInUser} type={"ReceivedCredits"} endPoint={"https://utility-server.azurewebsites.net/user/received"} />
+                                <Txnpage txnType={"Received_Credits"} userHandle={loggedInUser} type={"ReceivedCredits"} endPoint={"http://localhost:8080/user/received"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
                         <Route exact path="/paid" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Paid_Debits"} userHandle={loggedInUser} type={"PaidDebits"} endPoint={"https://utility-server.azurewebsites.net/user/paid"} />
+                                <Txnpage txnType={"Paid_Debits"} userHandle={loggedInUser} type={"PaidDebits"} endPoint={"http://localhost:8080/user/paid"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
                         <Route exact path="/credits" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Credits"} userHandle={loggedInUser} type={"credits"} endPoint={"https://utility-server.azurewebsites.net/user/credits"} />
+                                <Txnpage txnType={"Credits"} userHandle={loggedInUser} type={"credits"} endPoint={"http://localhost:8080/user/credits"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
                         <Route exact path="/debts" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Debits"} userHandle={loggedInUser} type={"debits"} endPoint={"https://utility-server.azurewebsites.net/user/debts"} />
+                                <Txnpage txnType={"Debits"} userHandle={loggedInUser} type={"debits"} endPoint={"http://localhost:8080/user/debts"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
                         <Route exact path="/pending" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Pending"} userHandle={loggedInUser} type={"pending"} endPoint={"https://utility-server.azurewebsites.net/user/pending"} />
+                                <Txnpage txnType={"Pending"} userHandle={loggedInUser} type={"pending"} endPoint={"http://localhost:8080/user/pending"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />

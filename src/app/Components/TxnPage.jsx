@@ -32,14 +32,27 @@ function Tnxpage(props) {
             setTxns(data.data);
         });
     }
-    const handleTxn = async () => {
-        try {
 
-        }
-        catch (err) {
-            console.log("Error: ", err);
+    const handleTxn = async (txnId) => {
+        try {
+            const headers = {
+                'Authorization': `Bearer ${token}`,
+                'userHandle': `${userName}`,
+            };
+
+            const res = await axios.post("http://localhost:8080/expense/payExpense", null, {
+                headers,
+                params: {
+                    txnId: txnId,
+                },
+            });
+            console.log(res);
+            setTxns(prevTxns => prevTxns.filter(txn => txn.id !== txnId));
+        } catch (err) {
+            console.log("Error, here in the handling pay expense: ", err);
         }
     }
+
     const txnData = txns.map((txn) => (
         <React.Fragment key={txn.id}>
             <tr>
@@ -49,12 +62,16 @@ function Tnxpage(props) {
                 <td>{props.type === "credits" ? txn.payer : txn.payee}</td>
                 {props.type === "debits" && (
                     <td>
-                        <input type="checkbox" onClick={handleTxn} />
+                        <button onClick={() => handleTxn(txn.id)}>Pay</button>
                     </td>
                 )}
             </tr>
         </React.Fragment>
     ));
+
+
+
+
 
     return (
         <div className="txn">
@@ -67,7 +84,7 @@ function Tnxpage(props) {
                         <th><h1>Amount</h1></th>
                         <th><h1>Tag</h1></th>
                         <th><h1>{(props.type === "debits" || props.type === "PaidDebits") ? "Owe To" : "Lend To"}</h1></th>
-                        {props.type === "debits" && <th>Checkbox</th>}
+                        {props.type === "debits" && <th><h1>Cilck to pay</h1></th>}
                     </tr>
                 </thead>
                 <tbody>

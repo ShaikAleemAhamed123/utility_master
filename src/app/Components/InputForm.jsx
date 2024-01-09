@@ -92,6 +92,7 @@ function InputForm() {
             const res=await axios.post("http://localhost:8080/expense/addExpense",newUserHandles[i],{headers});
             console.log(res);
           }
+          event.target.reset();
            
         }
         catch(err){
