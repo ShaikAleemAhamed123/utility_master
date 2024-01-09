@@ -9,7 +9,7 @@ const ProtectedRoute = (props) => {
         const userToken = Cookies.get('user_token');
         if (!userToken || userToken === 'undefined') {
             setIsLoggedIn(false);
-            return navigate('/login');
+            navigate('/login');
         }
         setIsLoggedIn(true);
     }

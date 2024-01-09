@@ -4,19 +4,20 @@ import "../styles/navBar-styles.css"
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 function NavBar() {
-    const navigate=useNavigate();
-    const logOut=()=>{
+    const navigate = useNavigate();
+    const logOut = () => {
         Cookies.remove('user_token');
-    Cookies.remove('username');
+        Cookies.remove('username');
         return navigate("/login");
 
     }
-    const token=Cookies.get("user_token");
-    const userName=Cookies.get("username");
-    const handleCredits=async ()=>{
-           try{
-            const headers={
+    const token = Cookies.get("user_token");
+    const userName = Cookies.get("username");
+    const handleCredits = async () => {
+        try {
+            const headers = {
                 'Authorization': `Bearer ${token}`,
                 'userHandle':`${userName}`,
               }
@@ -39,10 +40,10 @@ function NavBar() {
         catch(err){
          console.log("Error, here in the handling debts: ",err);
         }
- }
+    }
     return <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div className="container-fluid">
-            <a className="navbar-brand" href="/home"><img src={app_logo} className=" me rounded-circle " alt="Aleem's" /></a>
+            <a className="navbar-brand" href="/"><img src={app_logo} className=" me rounded-circle " alt="Aleem's" /></a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -51,14 +52,23 @@ function NavBar() {
             <div className="collapse navbar-collapse  " id="navbarSupportedContent">
                 <ul className="navbar-nav ms-auto">
                     <li className="nav-item me-4">
-                        <a className="nav-link" href="/home">Home</a>
+                        <a className="nav-link" href="/">Home</a>
                     </li>
                     <li className="nav-item me-4">
                         <a className="nav-link" href="/credits" onClick={handleCredits}>Credits</a>
                     </li>
                     <li className="nav-item me-4">
-                        <a className="nav-link"  href="/debts" onClick={handleDebts}>Debts</a>
+                        <a className="nav-link" href="/debts" onClick={handleDebts}>Debts</a>
                     </li>
+                    <li className="nav-item me-4">
+                        <a className="nav-link" href="/pending" onClick={handlePending}>Pending</a>
+                    </li>
+                    <NavDropdown title="History" id="basic-nav-dropdown">
+                        <NavDropdown.Item href="/received">Received Credits</NavDropdown.Item>
+                        <NavDropdown.Item href="/paid">
+                            Paid Debts
+                        </NavDropdown.Item>
+                    </NavDropdown>
                     <li className="nav-item me-4">
                         <a className="nav-link" href="/about">About</a>
                     </li>

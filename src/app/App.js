@@ -2,27 +2,32 @@ import NavBar from './Components/NavBar'
 import Footer from './Components/Footer'
 import InputForm from './Components/InputForm'
 import About from './Components/About'
-import Landing from './Components/Landing'
 import './App.css'
 import LoginForm from './Components/LoginForm'
 import Txnpage from './Components/TxnPage'
+import PTxns from './Components/PTxns'
 import SignUp from './Components/SignUp'
 import ProtectedRoute from './Components/ProtectedRoute'
 import {
     BrowserRouter as Router,
     Routes,
-    Route
+    Route,
 } from "react-router-dom";
+import Cookies from 'js-cookie'
 
 function App() {
+    const loggedInUser = Cookies.get('username');
     return <>
         <Router>
             <div className="app-wrapper">
                 <div className="main-content">
-
                     <Routes>
                         <Route exact path="/" element={
-                            <Landing />
+                            <ProtectedRoute>
+                                <NavBar />
+                                <InputForm />
+                                <Footer />
+                            </ProtectedRoute>
                         } />
                         <Route exact path="/signup" element={
                             <SignUp />
@@ -30,27 +35,42 @@ function App() {
                         <Route exact path="/login" element={
                             <LoginForm />
                         } />
-                        <Route exact path="/home" element={
+                        <Route exact path="/received" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <InputForm />
+                                <Txnpage txnType={"Received_Credits"} userHandle={loggedInUser} type={"ReceivedCredits"} endPoint={"https://utility-server.azurewebsites.net/user/received"} />
+                                <Footer />
+                            </ProtectedRoute>
+                        } />
+                        <Route exact path="/paid" element={
+                            <ProtectedRoute>
+                                <NavBar />
+                                <Txnpage txnType={"Paid_Debits"} userHandle={loggedInUser} type={"PaidDebits"} endPoint={"https://utility-server.azurewebsites.net/user/paid"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
                         <Route exact path="/credits" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Credits"} userHandle={"vamshi"} />
+                                <Txnpage txnType={"Credits"} userHandle={loggedInUser} type={"credits"} endPoint={"https://utility-server.azurewebsites.net/user/credits"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
                         <Route exact path="/debts" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Debits"} userHandle={"vamshi"} />
+                                <Txnpage txnType={"Debits"} userHandle={loggedInUser} type={"debits"} endPoint={"https://utility-server.azurewebsites.net/user/debts"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
+                        <Route exact path="/pending" element={
+                            <ProtectedRoute>
+                                <NavBar />
+                                <Txnpage txnType={"Pending"} userHandle={loggedInUser} type={"pending"} endPoint={"https://utility-server.azurewebsites.net/user/pending"} />
+                                <Footer />
+                            </ProtectedRoute>
+                        } />
+                         
                         <Route exact path="/about" element={
                             <ProtectedRoute>
                                 <NavBar />

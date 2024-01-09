@@ -31,7 +31,7 @@ const navigate=useNavigate();
                 <ul>
                     <li className='credentials'> 
                         <label htmlFor="userName">User Name</label>
-                        <input type="text" onChange={(e)=>setUserName(e.target.value)} id="user-handle" required/>
+                        <input type="text" onChange={(e)=>setUserName(e.target.value)} id="user-name" required/>
                     </li>
                     <li className='credentials'> 
                         <label htmlFor="userHandle">User Handle  ( has to be unique )</label>
