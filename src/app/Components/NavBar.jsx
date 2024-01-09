@@ -41,6 +41,19 @@ function NavBar() {
          console.log("Error, here in the handling debts: ",err);
         }
     }
+    const handlePending=async ()=>{
+        try{
+         const headers={
+             'Authorization': `Bearer ${token}`,
+             'userHandle':`${userName}`,
+           }
+           const res=await axios.get("http://localhost:8080/user/pending",{headers});
+           console.log(res);
+         }
+        catch(err){
+         console.log("Error, here in the handling pending: ",err);
+        }
+    }
     return <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div className="container-fluid">
             <a className="navbar-brand" href="/"><img src={app_logo} className=" me rounded-circle " alt="Aleem's" /></a>
