@@ -49,7 +49,7 @@ const navigate=useNavigate();
                         <div className="required-msg">REQUIRED FIELDS</div>
                         <button className="btn-grid" type="submit">
                             <span className="back">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/email-icon.svg" alt="" />
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/email-icon.svg" alt="" /> 
                             </span>
                             <span className="front">SUBMIT</span>
                         </button>
