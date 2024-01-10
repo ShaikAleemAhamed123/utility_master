@@ -33,20 +33,30 @@ function Tnxpage(props) {
         });
     }
 
-    const handleTxn = async (txnId) => {
+    const handleTxn = async (txnId, txnType) => {
         try {
             const headers = {
                 'Authorization': `Bearer ${token}`,
                 'userHandle': `${userName}`,
             };
-
-            const res = await axios.post("http://localhost:8080/expense/payExpense", null, {
-                headers,
-                params: {
-                    txnId: txnId,
-                },
-            });
-            console.log(res);
+            if (txnType == "debits") {
+                const res = await axios.post("http://localhost:8080/expense/payExpense", null, {
+                    headers,
+                    params: {
+                        txnId: txnId,
+                    },
+                });
+                console.log(res);
+            }
+            else {
+                const res = await axios.post("http://localhost:8080/user/paid", null, {
+                    headers,
+                    params: {
+                        txnId: txnId,
+                    },
+                });
+                console.log(res);
+            }
             setTxns(prevTxns => prevTxns.filter(txn => txn.id !== txnId));
         } catch (err) {
             console.log("Error, here in the handling pay expense: ", err);
@@ -59,10 +69,15 @@ function Tnxpage(props) {
                 <td>{txn.id}</td>
                 <td>{txn.amount}</td>
                 <td>{txn.tag == null ? "None" : txn.tag}</td>
-                <td>{props.type === "credits" ? txn.payer : txn.payee}</td>
-                {props.type === "debits" && (
+                <td>{(props.type === "debits" || props.type === "PaidDebits") ? txn.payee : txn.payer}</td>
+                {props.txnType === "debits" && (
                     <td>
-                        <button onClick={() => handleTxn(txn.id)}>Pay</button>
+                        <button onClick={() => handleTxn(txn.id, "debits")}>Pay</button>
+                    </td>
+                )}
+                {props.txnType === "pendingCredits" && (
+                    <td>
+                        <button onClick={() => handleTxn(txn.id, "pending")}>Clear</button>
                     </td>
                 )}
             </tr>
@@ -84,7 +99,8 @@ function Tnxpage(props) {
                         <th><h1>Amount</h1></th>
                         <th><h1>Tag</h1></th>
                         <th><h1>{(props.type === "debits" || props.type === "PaidDebits") ? "Owe To" : "Lend To"}</h1></th>
-                        {props.type === "debits" && <th><h1>Cilck to pay</h1></th>}
+                        {props.txnType === "debits" && <th><h1>Cilck to pay</h1></th>}
+                        {props.txnType === "pendingCredits" && <th><h1>Cilck to Clear</h1></th>}
                     </tr>
                 </thead>
                 <tbody>

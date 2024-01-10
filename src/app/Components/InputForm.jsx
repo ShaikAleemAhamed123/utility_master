@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 function InputForm() {
     
     const [equalSplit, setEqualSplit] = useState(false);
-    const [tag, setTag] = useState();
+    const [tag, setTag] = useState("Water Can");
     const [amount, setAmount] = useState();
     const [userHandle, setUserHandle] = useState();
     const [splitAmount, setSplitAmount] = useState();
@@ -34,7 +34,7 @@ function InputForm() {
             }
             else {
                 console.log(amount);
-                const am=parseFloat(amount)/n;
+                const am=parseFloat(amount)/(n+1);
                 console.log(am);
                 
                 const alterUsers = userHandles.map((item) => ({
@@ -93,7 +93,8 @@ function InputForm() {
             console.log(res);
           }
           event.target.reset();
-           
+           setUserHandles([]);
+           setTag("Water Can")
         }
         catch(err){
             console.log("Error, Here in the inputForm ",err);
@@ -112,9 +113,13 @@ function InputForm() {
                         <select value={tag} onChange={(e) => setTag(e.target.value)}>
                             <option value={"Water Can"}>Water Can</option>
                             <option value={"Laundry"}>Laundry</option>
+                            <option value={"Laundry"}>Food</option>
                             <option value={"Others"}>Others</option>
                         </select>
                     </li>
+                    {(tag!=="Water Can" && tag!=="Laundry" && tag!=="Food") && <li>
+                        <input placeholder='Enter the custom tag' onChange={(event) => setTag(event.target.value)}></input>
+                    </li>}
                     <li className='splits'>
                         <input type="checkbox" id="equal-split" onClick={handleEqualSplitToggle} />
                         <label htmlFor="equal-split">Equal Split</label>
@@ -124,7 +129,7 @@ function InputForm() {
                     </li>
                     <li>
                         <div className={equalSplit ? "grid grid-2" : "grid grid-3"}>
-                            <input id="split-user" onChange={(e) => setUserHandle(e.target.value)} type="text" placeholder="Enter User Handle" />
+                            <input id="split-user" onChange={(e) => setUserHandle(e.target.value)} value={userHandle} type="text" placeholder="Enter User Handle" />
                          { !equalSplit&&  (<input id="split-amount" onChange={(e) => setSplitAmount(e.target.value)} style={{ display:  "block" }} type="number" placeholder="Split Amount" />)}
                             <button className="btn-grid" onClick={handleSplitUsersAddButton}>
                                 <span>Add</span>

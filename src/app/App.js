@@ -38,39 +38,45 @@ function App() {
                         <Route exact path="/received" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Received_Credits"} userHandle={loggedInUser} type={"ReceivedCredits"} endPoint={"http://localhost:8080/user/received"} />
+                                <Txnpage txnType={"receivedCredits"} userHandle={loggedInUser} type={"ReceivedCredits"} endPoint={"http://localhost:8080/user/received"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
                         <Route exact path="/paid" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Paid_Debits"} userHandle={loggedInUser} type={"PaidDebits"} endPoint={"http://localhost:8080/user/paid"} />
+                                <Txnpage txnType={"paidDebits"} userHandle={loggedInUser} type={"PaidDebits"} endPoint={"http://localhost:8080/user/paid"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
                         <Route exact path="/credits" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Credits"} userHandle={loggedInUser} type={"credits"} endPoint={"http://localhost:8080/user/credits"} />
+                                <Txnpage txnType={"credits"} userHandle={loggedInUser} type={"credits"} endPoint={"http://localhost:8080/user/credits"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
                         <Route exact path="/debts" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Debits"} userHandle={loggedInUser} type={"debits"} endPoint={"http://localhost:8080/user/debts"} />
+                                <Txnpage txnType={"debits"} userHandle={loggedInUser} type={"debits"} endPoint={"http://localhost:8080/user/debts"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
-                        <Route exact path="/pending" element={
+                        <Route exact path="/pendingCredits" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"Pending"} userHandle={loggedInUser} type={"pending"} endPoint={"http://localhost:8080/user/pending"} />
+                                <Txnpage txnType={"pendingCredits"} userHandle={loggedInUser} type={"credits"} endPoint={"http://localhost:8080/user/pendingCredits"} />
                                 <Footer />
                             </ProtectedRoute>
                         } />
-                         
+                        <Route exact path="/pendingDebits" element={
+                            <ProtectedRoute>
+                                <NavBar />
+                                <Txnpage txnType={"PendingDebits"} userHandle={loggedInUser} type={"debits"} endPoint={"http://localhost:8080/user/pendingDebits"} />
+                                <Footer />
+                            </ProtectedRoute>
+                        } />
                         <Route exact path="/about" element={
                             <ProtectedRoute>
                                 <NavBar />
