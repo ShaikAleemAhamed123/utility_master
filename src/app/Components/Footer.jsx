@@ -32,7 +32,7 @@ function Footer() {
             </div>
 
             <div className="text-center p-3" style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}>
-                © 2023 Copyright : Aleem Ahamed Shaik, Vamshi Birru
+                © 2023 Copyright : Aleem Ahamed Shaik
             </div>
         </footer>
     </>

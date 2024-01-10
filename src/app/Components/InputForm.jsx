@@ -119,7 +119,7 @@ function InputForm() {
                         </select>
                     </li>
                     {(tag!=="Water Can" && tag!=="Laundry" && tag!=="Food") && <li>
-                        <input placeholder='Enter the custom tag' onChange={(event) => setTag(event.target.value)}></input>
+                        <input required placeholder='Enter the custom tag' onChange={(event) => setTag(event.target.value)}></input>
                     </li>}
                     <li className='splits'>
                         <input type="checkbox" id="equal-split" onClick={handleEqualSplitToggle} />
@@ -130,8 +130,8 @@ function InputForm() {
                     </li>
                     <li>
                         <div className={equalSplit ? "grid grid-2" : "grid grid-3"}>
-                            <input id="split-user" onChange={(e) => setUserHandle(e.target.value)} value={userHandle} type="text" placeholder="Enter User Handle" />
-                         { !equalSplit&&  (<input id="split-amount" onChange={(e) => setSplitAmount(e.target.value)} style={{ display:  "block" }} type="number" placeholder="Split Amount" />)}
+                            <input required id="split-user" onChange={(e) => setUserHandle(e.target.value)} value={userHandle} type="text" placeholder="Enter User Handle" />
+                         { !equalSplit&&  (<input required id="split-amount" onChange={(e) => setSplitAmount(e.target.value)} style={{ display:  "block" }} type="number" placeholder="Split Amount" />)}
                             <button className="btn-grid" onClick={handleSplitUsersAddButton}>
                                 <span>Add</span>
                             </button>
@@ -139,7 +139,7 @@ function InputForm() {
                     </li>
                     <li>
                         <div className="grid">
-                            <textarea id="split-users" value={formattedData} type="text" placeholder="split participants user handles appear here." disabled />
+                            <textarea id="split-users" value={formattedData} type="text" placeholder="split participants' user handles appear here." disabled />
                         </div>
                     </li>
                     <li>
