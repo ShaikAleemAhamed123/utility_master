@@ -34,7 +34,8 @@ function InputForm() {
             }
             else {
                 console.log(amount);
-                const am=parseFloat(amount)/(n+1);
+                const am=(parseFloat(amount)/(n+1)).toFixed(1);
+                ;
                 console.log(am);
                 
                 const alterUsers = userHandles.map((item) => ({

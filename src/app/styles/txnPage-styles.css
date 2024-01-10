@@ -84,6 +84,6 @@
 .txn-table td:first-child { color: #FB667A; }
 
 @media (max-width: 800px) {
-.txn-table td:nth-child(5),
-.txn-table th:nth-child(5) { display: none; }
+.txn-table td:nth-child(6),
+.txn-table th:nth-child(6) { display: none; }
 }

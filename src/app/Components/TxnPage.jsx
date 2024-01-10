@@ -72,12 +72,12 @@ function Tnxpage(props) {
                 <td>{(props.type === "debits" || props.type === "PaidDebits") ? txn.payee : txn.payer}</td>
                 {props.txnType === "debits" && (
                     <td>
-                        <button onClick={() => handleTxn(txn.id, "debits")}>Pay</button>
+                        <button type='button' className=" btn btn-secondary rounded btn-sm" onClick={() => handleTxn(txn.id, "debits")}>Pay</button>
                     </td>
                 )}
                 {props.txnType === "pendingCredits" && (
                     <td>
-                        <button onClick={() => handleTxn(txn.id, "pending")}>Clear</button>
+                        <button type='button' className="btn btn-secondary rounded btn-sm" onClick={() => handleTxn(txn.id, "pending")}>Clear</button>
                     </td>
                 )}
             </tr>
@@ -107,6 +107,7 @@ function Tnxpage(props) {
                     {txnData}
                 </tbody>
             </table>
+             
         </div>
     );
 }
