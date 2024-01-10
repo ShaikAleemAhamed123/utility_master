@@ -39,7 +39,7 @@ function Tnxpage(props) {
                 'Authorization': `Bearer ${token}`,
                 'userHandle': `${userName}`,
             };
-            if (txnType == "debits") {
+            if (txnType === "debits") {
                 const res = await axios.post("http://localhost:8080/expense/payExpense", null, {
                     headers,
                     params: {

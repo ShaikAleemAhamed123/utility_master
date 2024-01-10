@@ -5,7 +5,6 @@ import About from './Components/About'
 import './App.css'
 import LoginForm from './Components/LoginForm'
 import Txnpage from './Components/TxnPage'
-import PTxns from './Components/PTxns'
 import SignUp from './Components/SignUp'
 import ProtectedRoute from './Components/ProtectedRoute'
 import {

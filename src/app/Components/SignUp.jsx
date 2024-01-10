@@ -1,7 +1,6 @@
 import {useState} from 'react';
 import "../styles/loginForm-styles.css"
 import axios from 'axios';
-import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom/dist';
 function SignUp() {
     const [userName,setUserName]=useState();
