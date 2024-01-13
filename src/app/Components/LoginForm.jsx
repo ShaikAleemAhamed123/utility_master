@@ -3,6 +3,9 @@ import "../styles/loginForm-styles.css"
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom/dist';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function LoginForm() {
     const [userHandle, setUserHandle] = useState();
@@ -10,18 +13,29 @@ function LoginForm() {
     const [isLoading, setIsLoading] = useState(false); // Added loading state
 
     const navigate = useNavigate();
+    
 
     async function submitHandler(event) {
         event.preventDefault();
+        setIsLoading(true);
         try{
            const res=await axios.post("https://utility-api.onrender.com/auth/signIn",{userHandle:userHandle,password:password});
           // console.log(res.data);
+         
            const token=res.data;
            Cookies.set('user_token', token, { expires: 30 });
            Cookies.set('username',userHandle,{expires:30});
+           toast.success('Login successful', {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000, // milliseconds
+        });
            navigate("/");
         }
         catch(err){
+            toast.error('Login failed. Please check your credentials.', {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 3000,
+            });
             console.log("Error, here in the login form ", err);
         } finally {
             setIsLoading(false); // Set loading state back to false after request is done
@@ -30,7 +44,10 @@ function LoginForm() {
 
     return (
         <>
-            <form className="my-form my-5" onSubmit={submitHandler}>
+            <ToastContainer />
+            <div>
+        {isLoading && <div className='imgWrapper'> <img className='loading' src="https://media.giphy.com/media/J2PMrCdd4KqpLqa9pc/giphy.gif" alt="Loading..." /> </div>}
+        {!isLoading&&<form className="my-form my-5" onSubmit={submitHandler}>
                 <div className="container">
                     <h1>Log In</h1>
                     <ul>
@@ -69,7 +86,8 @@ function LoginForm() {
                     </ul>
                 </div>
 
-            </form>
+            </form>}
+    </div>
 
         </>
     );

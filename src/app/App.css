@@ -2,6 +2,10 @@ body {
   font: 18px/1.5 "Open Sans", sans-serif;
   background: var(--bodyColor);
   color: var(--white);
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .app-wrapper {
