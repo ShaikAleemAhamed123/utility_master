@@ -29,10 +29,17 @@ function App() {
                             </ProtectedRoute>
                         } />
                         <Route exact path="/signup" element={
+                            <>
                             <SignUp />
+                            <Footer/>
+                            </>
                         } />
                         <Route exact path="/login" element={
+                            <>
                             <LoginForm />
+                            <Footer/>
+                            </>
+                             
                         } />
                         <Route exact path="/received" element={
                             <ProtectedRoute>

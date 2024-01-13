@@ -3,7 +3,6 @@ import "../styles/loginForm-styles.css"
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom/dist';
-import Footer from "./Footer"
 
 function LoginForm() {
     const [userHandle, setUserHandle] = useState();
@@ -71,7 +70,6 @@ function LoginForm() {
                 </div>
 
             </form>
-            <Footer/>
 
         </>
     );
