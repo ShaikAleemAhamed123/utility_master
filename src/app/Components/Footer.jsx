@@ -13,7 +13,7 @@ function Footer() {
                     ><i className="fab fa-twitter"></i>
                     </a>
 
-                    <a className="btn btn-outline-light btn-floating m-1" href="shaikaleemahamed786@gmail.com" role="button"
+                    <a className="btn btn-outline-light btn-floating m-1" href="mailto:shaikaleemahamed786@gmail.com" role="button"
                     ><i className="fab fa-google"></i>
                     </a>
 
