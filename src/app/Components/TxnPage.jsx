@@ -8,6 +8,7 @@ function Tnxpage(props) {
     const token = Cookies.get('user_token');
 
     const [txns, setTxns] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const url = props.endPoint;
@@ -15,6 +16,9 @@ function Tnxpage(props) {
     }, []);
 
     async function fetchtxnData(url) {
+
+        setLoading(true);
+    
         const headers = {
             'Authorization': `Bearer ${token}`,
             'userHandle': `${userName}`,
@@ -22,16 +26,21 @@ function Tnxpage(props) {
         const params = {
             'tag': "",
         }
-        const res = await axios({
-            method: "get",
-            url: url,
-            params: params,
-            headers: headers
-        }).then((data) => {
-            //console.log(data.data);
-            setTxns(data.data);
-        });
-    }
+        try {
+            const res = await axios({
+                method: "get",
+                url: url,
+                params: params,
+                headers: headers
+            });
+            setLoading(false);
+            console.log(res.data);
+            setTxns(res.data);
+        } catch (error) {
+            setLoading(false);
+            console.error("Error fetching data:", error);
+        }
+    }    
 
     const handleTxn = async (txnId, txnType) => {
         try {
@@ -89,6 +98,7 @@ function Tnxpage(props) {
 
 
     return (
+        <>
         <div className="txn">
             <h1><span className="blue">&lt;</span>Transactions<span className="blue">&gt;</span> <span className="yellow">{props.txnType}</span></h1>
             <h2>For user : @<strong>{props.userHandle}</strong></h2>
@@ -109,6 +119,7 @@ function Tnxpage(props) {
             </table>
              
         </div>
+        </>
     );
 }
 
