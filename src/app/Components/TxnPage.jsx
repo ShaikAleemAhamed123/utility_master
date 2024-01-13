@@ -40,7 +40,7 @@ function Tnxpage(props) {
                 'userHandle': `${userName}`,
             };
             if (txnType === "debits") {
-                const res = await axios.post("http://localhost:8080/expense/payExpense", null, {
+                const res = await axios.post("https://utility-api.onrender.com/expense/payExpense", null, {
                     headers,
                     params: {
                         txnId: txnId,
@@ -49,7 +49,7 @@ function Tnxpage(props) {
                 console.log(res);
             }
             else {
-                const res = await axios.post("http://localhost:8080/user/paid", null, {
+                const res = await axios.post("https://utility-api.onrender.com/user/paid", null, {
                     headers,
                     params: {
                         txnId: txnId,
