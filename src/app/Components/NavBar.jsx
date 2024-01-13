@@ -21,7 +21,7 @@ function NavBar() {
                 'Authorization': `Bearer ${token}`,
                 'userHandle':`${userName}`,
               }
-              const res=await axios.get("http://localhost:8080/user/credits",{headers});
+              const res=await axios.get("https://utility-api.onrender.com/user/credits",{headers});
               console.log(res);
             }
            catch(err){
@@ -34,7 +34,7 @@ function NavBar() {
              'Authorization': `Bearer ${token}`,
              'userHandle':`${userName}`,
            }
-           const res=await axios.get("http://localhost:8080/user/debts",{headers});
+           const res=await axios.get("https://utility-api.onrender.com/user/debts",{headers});
            console.log(res);
          }
         catch(err){
