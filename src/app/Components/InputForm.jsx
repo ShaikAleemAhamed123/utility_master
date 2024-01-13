@@ -130,7 +130,7 @@ function InputForm() {
                     </li>
                     <li>
                         <div className={equalSplit ? "grid grid-2" : "grid grid-3"}>
-                            <input required id="split-user" onChange={(e) => setUserHandle(e.target.value)} value={userHandle} type="text" placeholder="Enter User Handle" />
+                            <input id="split-user" onChange={(e) => setUserHandle(e.target.value)} value={userHandle} type="text" placeholder="Enter User Handle" />
                          { !equalSplit&&  (<input required id="split-amount" onChange={(e) => setSplitAmount(e.target.value)} style={{ display:  "block" }} type="number" placeholder="Split Amount" />)}
                             <button className="btn-grid" onClick={handleSplitUsersAddButton}>
                                 <span>Add</span>
