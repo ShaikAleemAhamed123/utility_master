@@ -11,14 +11,27 @@ body {
 .app-wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Set the wrapper to at least 100% of the viewport height */
+  min-height: 100vh;
 }
 
 .main-content {
   flex: 1;
+  overflow-y: auto;
 }
 
 footer {
   flex-shrink: 0;
-  margin-top: auto;
+}
+
+/* Add the following style to position the loading spinner */
+.imgWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.loading {
+  width: 1000px;
 }

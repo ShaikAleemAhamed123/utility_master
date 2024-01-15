@@ -12,7 +12,7 @@ function About() {
                 <li>During the development phase I was accompanied by my friend, Vamshi Birru, to complete the integration of the front-end part(ReactJS) with the backend(Springboot API).</li> 
             </p>
             <p className="container mt-5 mb-5">
-                <li>You can reach out vamshi at <a href="">Linkedin</a> <a href="">Github</a> <a href="">Twitter</a> <a href="">Instagram</a></li> 
+                <li>You can reach out vamshi at <a href="https://www.linkedin.com/in/birruvamshi/">Linkedin</a> <a href="https://github.com/Vamshi-Birru">Github</a> <a href="https://twitter.com/Vamshi74830931">Twitter</a> <a href="https://t.co/en9zVQO0wY">Instagram</a></li> 
             </p>
         </div>
     </>

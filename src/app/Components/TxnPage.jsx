@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import "../styles/txnPage-styles.css"
 import Cookies from "js-cookie";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function Tnxpage(props) {
     const userName = Cookies.get('username');
@@ -99,7 +102,10 @@ function Tnxpage(props) {
 
     return (
         <>
-        <div className="txn">
+         <ToastContainer />
+        <div>
+        {loading && (<div className='imgWrapper'> <img className='loading' src="https://media.giphy.com/media/ZWiIwPxJ9JGW4/giphy.gif" alt="Loading..." /> </div>)}
+        {!loading&&(<div className="txn">
             <h1><span className="blue">&lt;</span>Transactions<span className="blue">&gt;</span> <span className="yellow">{props.txnType}</span></h1>
             <h2>For user : @<strong>{props.userHandle}</strong></h2>
             <table className="txn-table">
@@ -118,6 +124,7 @@ function Tnxpage(props) {
                 </tbody>
             </table>
              
+        </div>)}
         </div>
         </>
     );
