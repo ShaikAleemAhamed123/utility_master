@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom/dist';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import login_loader from "../images/login_loader.gif"
 
 
 function LoginForm() {
@@ -46,7 +47,7 @@ function LoginForm() {
         <>
             <ToastContainer />
             <div>
-        {isLoading && <div className='imgWrapper'> <img className='loading' src="https://media.giphy.com/media/J2PMrCdd4KqpLqa9pc/giphy.gif" alt="Loading..." /> </div>}
+        {isLoading && <div className='imgWrapper'> <img className='loading' src={login_loader} alt="Loading..." /> </div>}
         {!isLoading&&<form className="my-form my-5" onSubmit={submitHandler}>
                 <div className="container">
                     <h1>Log In</h1>

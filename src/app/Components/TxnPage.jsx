@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import txn_loader from  "../images/txn_loader.gif"
 
 
 function Tnxpage(props) {
@@ -104,7 +105,7 @@ function Tnxpage(props) {
         <>
          <ToastContainer />
         <div>
-        {loading && (<div className='imgWrapper'> <img className='loading' src="https://media.giphy.com/media/ZWiIwPxJ9JGW4/giphy.gif" alt="Loading..." /> </div>)}
+        {loading && (<div className='imgWrapper'> <img className='loading' src={txn_loader} alt="Loading..." /> </div>)}
         {!loading&&(<div className="txn">
             <h1><span className="blue">&lt;</span>Transactions<span className="blue">&gt;</span> <span className="yellow">{props.txnType}</span></h1>
             <h2>For user : @<strong>{props.userHandle}</strong></h2>

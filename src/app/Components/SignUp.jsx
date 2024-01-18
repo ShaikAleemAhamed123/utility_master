@@ -2,16 +2,24 @@ import {useState} from 'react';
 import "../styles/loginForm-styles.css"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom/dist';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import signup_loader from "../images/signup_loader.gif"
+
+
+
 function SignUp() {
     const [userName,setUserName]=useState();
         const [userHandle,setUserHandle]=useState();
         const [password,setPassword]=useState();
         const [roomNo,setRoomNo]=useState();
+        const [isLoading,setIsLoading]=useState(false);
          
 
 const navigate=useNavigate();
 
     async function submitHandler(event) {
+        setIsLoading(true);
         event.preventDefault();
         try{
            const res=await axios.post("https://utility-api.onrender.com/auth/signUp",{userName:userName, userHandle:userHandle,password:password, roomNo:roomNo});
@@ -19,12 +27,22 @@ const navigate=useNavigate();
            navigate("/login");
         }
         catch(err){
+            toast.error('Login failed. Please check your credentials.', {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 3000,
+            });
             console.log("Error, here in the sign up form ", err);
+        }
+        finally{
+            setIsLoading(false);
         }
     }
 
     return <>
-        <form className="my-form my-5" onSubmit={submitHandler}>
+    <div>
+    {isLoading && <div className='imgWrapper'> <img className='loading' src={signup_loader} alt="Loading..." /> </div>}
+    </div>
+        {!isLoading && <form className="my-form my-5" onSubmit={submitHandler}>
             <div className="container">
                 <h1>Sign Up</h1>
                 <ul>
@@ -65,6 +83,7 @@ const navigate=useNavigate();
                 </ul>
             </div>
         </form>
+}
     </>
 }
 
