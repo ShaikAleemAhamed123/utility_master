@@ -41,42 +41,42 @@ function App() {
                         <Route exact path="/received" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"receivedCredits"} userHandle={loggedInUser} type={"ReceivedCredits"} endPoint={"https://utility-api.onrender.com/user/received"} />
+                                <Txnpage txnType={"receivedCredits"} userHandle={loggedInUser} type={"ReceivedCredits"} endPoint={"https://utility-api.onrender.com/ledger/received"} />
                                
                             </ProtectedRoute>
                         } />
                         <Route exact path="/paid" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"paidDebits"} userHandle={loggedInUser} type={"PaidDebits"} endPoint={"https://utility-api.onrender.com/user/paid"} />
+                                <Txnpage txnType={"paidDebits"} userHandle={loggedInUser} type={"PaidDebits"} endPoint={"https://utility-api.onrender.com/ledger/paid"} />
                                
                             </ProtectedRoute>
                         } />
                         <Route exact path="/credits" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"credits"} userHandle={loggedInUser} type={"credits"} endPoint={"https://utility-api.onrender.com/user/credits"} />
+                                <Txnpage txnType={"credits"} userHandle={loggedInUser} type={"credits"} endPoint={"https://utility-api.onrender.com/ledger/credits"} />
                                 
                             </ProtectedRoute>
                         } />
                         <Route exact path="/debts" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"debits"} userHandle={loggedInUser} type={"debits"} endPoint={"https://utility-api.onrender.com/user/debts"} />
+                                <Txnpage txnType={"debits"} userHandle={loggedInUser} type={"debits"} endPoint={"https://utility-api.onrender.com/ledger/debts"} />
                                
                             </ProtectedRoute>
                         } />
                         <Route exact path="/pendingCredits" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"pendingCredits"} userHandle={loggedInUser} type={"credits"} endPoint={"https://utility-api.onrender.com/user/pendingCredits"} />
+                                <Txnpage txnType={"pendingCredits"} userHandle={loggedInUser} type={"credits"} endPoint={"https://utility-api.onrender.com/ledger/pendingCredits"} />
                                
                             </ProtectedRoute>
                         } />
                         <Route exact path="/pendingDebits" element={
                             <ProtectedRoute>
                                 <NavBar />
-                                <Txnpage txnType={"PendingDebits"} userHandle={loggedInUser} type={"debits"} endPoint={"https://utility-api.onrender.com/user/pendingDebits"} />
+                                <Txnpage txnType={"PendingDebits"} userHandle={loggedInUser} type={"debits"} endPoint={"https://utility-api.onrender.com/ledger/pendingDebits"} />
                                
                             </ProtectedRoute>
                         } />
