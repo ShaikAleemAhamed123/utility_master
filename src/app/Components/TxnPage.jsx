@@ -131,4 +131,4 @@ function Tnxpage(props) {
     );
 }
 
-export default Tnxpage;
+export default Tnxpage; 
